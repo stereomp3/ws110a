@@ -32,7 +32,7 @@ app.use((ctx) => {
         <h1 style="text-align: center; border-bottom: 8px dotted #89B3A4">
           九九乘法表
         </h1>
-      ${table()} 
+      ${table()}  // return table_list 放入元素
       <div>
     </body>
   </html>`

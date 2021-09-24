@@ -1,4 +1,5 @@
-export function table(){
+// 產生99乘法表元素
+export function table(){ // export宣告這函數可以被引入
     let table_list = ['<table>']
     for(let i = 1; i < 10; i++){
         for(let j = 1; j < 10; j++){
