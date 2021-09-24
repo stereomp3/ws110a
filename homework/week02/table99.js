@@ -8,7 +8,6 @@ export function table(){ // export宣告這函數可以被引入
             else if(i == 1){table_list.push(`<th>${i*j}</th>`)}
             else if(j == 1){table_list.push(`<tr><th>${i*j}</th>`)}
             else{table_list.push(`<td>${i*j}</td>`)}
-            if(j == 9){table_list.push("\n")}
         }
     }
     return table_list.join(" ")
