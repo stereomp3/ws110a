@@ -87,7 +87,7 @@
   >
   >```sqlite
   >DELETE FROM 創建資料名
-  >WHERE  {符合的資料};
+  >WHERE  符合的資料
   >```
 
 
