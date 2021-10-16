@@ -1,5 +1,7 @@
 # 課程:網站設計進階 -- 習題與報告
 
+> [筆記](./ws110a/homework/note)
+
 欄位 | 內容
 -----|--------
 學期 | 110 學年度上學期
@@ -9,4 +11,4 @@
 學校科系 | [金門大學資訊工程系](https://www.nqu.edu.tw/educsie/index.php)
 課程內容 | https://gitlab.com/ccc110/ws
 
-> [筆記](/ws110a/homework/note)
+
