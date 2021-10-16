@@ -2,7 +2,7 @@
 
 root@localhost:~# history
 
-```js
+```
     1. ls  `列出目前資料夾下面的內容`
     2. pwd  `顯示目前資料夾位置`
     3. ls /
