@@ -1,11 +1,12 @@
-typscript 是把js的檔加上型態
+* typscript 是把js的檔加上型態
 
-
+```
 Router裡面的method
 get 
 add
 delet
 post
+```
 
 ### 樣板字符串 (通常是用` HTML `)
 
