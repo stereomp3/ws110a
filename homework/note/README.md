@@ -1,4 +1,4 @@
-> [linode](/ws110a/homework/note/linode.md)
+> [linode](#linode.md)
 
 > [note01](/ws110a/homework/note/note01.md)
 
