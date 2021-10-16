@@ -1,6 +1,6 @@
 > **ssh root@172.104.91.57  // 進入localhost**
 
-root@localhost:~# history
+* root@localhost:~# history
 
 ```
     1. ls  `列出目前資料夾下面的內容`
