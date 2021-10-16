@@ -1,5 +1,5 @@
 import { Application, Router, send } from "https://deno.land/x/oak/mod.ts";
-import * as render from './render.js'
+import * as render from './public/render.js'
 
 
 const posts = [
@@ -13,10 +13,10 @@ router.get('/', list)
     .get('/post/new(.*)', add)
     .get('/post/:id', show)
     .post('/post', create) // 如果有很多字用post，較安全，不會把內容貼到網址上，貼在文內部
-    .get('/(.*)', async (ctx) => {
+    .get('/public/(.*)', async (ctx) => {
         await send(ctx, ctx.params[0], {
-            root: Deno.cwd(),
-            index: "layout.css", 
+            root: Deno.cwd()+"/public", // 放在其他資料夾
+            //index: , // 只打資料夾時候
         }) 
     })
 
@@ -37,7 +37,8 @@ async function show(ctx) {
     const id = ctx.params.id;
     const post = posts[id];
     if (!post) ctx.throw(404, 'invalid post id');
-    ctx.response.body = await render.show(post);
+    ctx.response.body = await render.
+    show(post);
 }
 
 async function create(ctx) {
@@ -55,7 +56,7 @@ async function create(ctx) {
     const id = posts.push(post) - 1; // push函數有回傳值，return 目前是幾筆資料
     post.created_at = new Date(); // 紀錄日期
     post.id = id; // 放入字典裡
-    ctx.response.redirect('/');
+    ctx.response.redirect('/'); // 創建完回到根目錄
     }
 }
 

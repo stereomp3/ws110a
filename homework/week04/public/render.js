@@ -3,8 +3,7 @@ return `
     <html>
     <head>
         <title>${title}</title> 
-        <link rel="stylesheet" href="layout.css">
-        <link rel="stylesheet" href="../layout.css">
+        <link rel="stylesheet" href="/public/layout.css">
     </head>
     <body>
         <div id="content">
@@ -13,8 +12,8 @@ return `
         <div id="calendar">
         ${calendar}
         </div>
-        <script src="render.js"></script>
-        <script src="tool.js"></script>
+        <script src="/public/render.js"></script>
+        <script src="/public/tool.js"></script>
     </body>
     </html>
     `

@@ -1,16 +1,16 @@
 import {LogicManeger} from './Controller.js'
 import {LayoutModel} from './Model.js'
 
-export class VeiwManeger{
+export class ViewManeger{
     constructor(){
         this.logic = new LogicManeger()
         this.layout = new LayoutModel()
+        console.log('this.layout=', this.layout)
     } 
-
-    list(){
-        async (ctx) => {
-            ctx.response.body = await layout.use('Posts', this.logic.push_list(this.logic.push_list));
-        } 
+    // obj.func, 不能直接被 oak router 呼叫。必須包成 (ctx)=>obj.func(ctx)
+    list(ctx){
+        console.log('this.layout=', layout)
+            ctx.response.body = 'hello' // await this.layout.use('Posts', ``);
     }
     show(){
         async (ctx) => {
