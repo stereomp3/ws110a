@@ -1,23 +1,23 @@
 > **ssh root@172.104.91.57  // 進入localhost**
 
 root@localhost:~# history
-    1  ls  `列出目前資料夾下面的內容`
-    2  pwd  `顯示目前資料夾位置`
-    3  ls /
-    4  git clone git@github.com:stereomp3/ws110a.git `到網路上clone自己的專案到遠端電腦`
-    5  ssh-keygen
-    6  cat /root/.ssh/id_rsa.pub
-    7  git clone git@github.com:stereomp3/ws110a.git
-    8  ls
-    9  curl -fsSL https://deno.land/x/install/install.sh | sh
-   10  sudo apt install unzip  `sudo是ubando裡面的高級權限指令`
-   11  sudo apt update
-   12 sudo apt install unzip
-   13  curl -fsSL https://deno.land/x/install/install.sh | sh 
-   14  deno  `確認有沒有裝deno`
-   15  vim ~/.bash_profile   `vim 是編輯資料夾，按l可以編輯，esc取消，shift+:，w(保存)q(離開)編輯完畢取消`
-   16  source ~/.bash_profile  `source 指令稿執行`
-   18  history `看之前打過的`
+    1.  ls  `列出目前資料夾下面的內容`
+    2.  pwd  `顯示目前資料夾位置`
+    3.  ls /
+    4.  git clone git@github.com:stereomp3/ws110a.git `到網路上clone自己的專案到遠端電腦`
+    5.  ssh-keygen
+    6.  cat /root/.ssh/id_rsa.pub
+    7.  git clone git@github.com:stereomp3/ws110a.git
+    8.  ls
+    9.  curl -fsSL https://deno.land/x/install/install.sh | sh
+   10.  sudo apt install unzip  `sudo是ubando裡面的高級權限指令`
+   11.  sudo apt update
+   12. sudo apt install unzip
+   13.  curl -fsSL https://deno.land/x/install/install.sh | sh 
+   14.  deno  `確認有沒有裝deno`
+   15.  vim ~/.bash_profile   `vim 是編輯資料夾，按l可以編輯，esc取消，shift+:，w(保存)q(離開)編輯完畢取消`
+   16. source ~/.bash_profile  `source 指令稿執行`
+   18.  history `看之前打過的`
 
 > cd到clone的資料夾，然後vim編輯新增run然後用pm2執行
 
