@@ -4,6 +4,22 @@
 
 * 引入script `<script src=“//cdn.jsdelivr.net/npm/phaser@3.14.0/dist/phaser.min.js"></script>`
 
+  
+
+>[建創遊戲視窗](#建創遊戲視窗)
+
+
+
+>[加入遊戲素材](#加入遊戲素材)
+
+
+
+>[素材變形](#素材變形)
+
+
+
+> [使用者互動](#使用者互動)
+
 
 
 ### 建創遊戲視窗
