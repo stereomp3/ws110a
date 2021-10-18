@@ -129,3 +129,14 @@ root@localhost:~/pub6# cat pm2run.sh
 
   使用wsl(在studio code 可以用linux) 
 
+
+
+```
+Q:
+	在函式裡面prompt()和alert()為甚麼是顯示在終端機?
+	class不能在router裡面運作?
+	input的 search 和 file 可以讀取資料嗎
+	search搜尋引擎 --> database ? 
+	
+```
+

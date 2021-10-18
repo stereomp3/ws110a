@@ -1,0 +1,3 @@
+圖片大小 width:120, height:200.
+
+批量更改圖片名 : 案shift加右鍵叫出powershell, 輸入Dir *.png | %{Rename-Item $_ -NewName ("{0}.png" -f $c++)}
