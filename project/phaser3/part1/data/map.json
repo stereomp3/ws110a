@@ -1,0 +1,15 @@
+{
+    "platforms": [
+        { "x": 0, "y": 300, "num": 30, "key": "ground" },
+        { "x": 200, "y": 200, "num": 3, "key": "ground" },
+        { "x": 400, "y": 200, "num": 3, "key": "ground" },
+        { "x": 600, "y": 200, "num": 3, "key": "ground" },
+        { "x": 800, "y": 200, "num": 3, "key": "ground" },
+        { "x": 1000, "y": 200, "num": 3, "key": "ground" },
+        { "x": 200, "y": 200, "num": 3, "key": "ground" },
+        { "x": 400, "y": 200, "num": 3, "key": "ground" },
+        { "x": 300, "y": 100, "num": 3, "key": "ground" },
+        { "x": 100, "y": 100, "num": 3, "key": "ground" },
+        { "x": 500, "y": 100, "num": 3, "key": "ground" }
+    ]
+}

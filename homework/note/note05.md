@@ -1,6 +1,6 @@
+
+
 # 第五周筆記
-
-
 
 ## form表單
 
@@ -18,32 +18,49 @@
 		submit會丟出name的值當作鍵(key)，內容當作值(value)，可以用
 		const 變數 = await body.value`接收						-->
     <p><input type="submit" value="Create"></p>
-    
-    <!--拉條可以設最大最小值，也可以用id配label的for-->
-    <input type="range" min="0" max="50">  
-    <!--尋找通常會用id配label的for(說明)，再加name讓submit可以傳回到後端-->
-    <input type="search">  
-    
-    <input type="color">  <!--選顏色-->
-    <input type="date">  <!--選日期-->
-    <input type="datetime-local">  <!--可以選日期和時間-->
-    <input type="month">  <!--選年和月-->
-    <input type="week">  <!--選年和周-->
-    <input type="file">  <!--放入文件檔案-->
-    <input type="hidden">  <!--隱藏的，沒東西-->
-    <input type="image">  <!--放圖片-->
-    <input type="number">  <!--輸入數字-->
-    <input type="email">  <!--輸入信箱-->
-    <input type="password">  <!--輸入密碼-->
-    <input type="checkbox">  <!--多選框通常會設定id，搭配label的for指定選項-->
-    <input type="radio">  <!--單選框通常會設定id，搭配label的for指定選項-->
-    <input type="reset">  <!--所有form裡面的input重設-->
-    <input type="tel">  <!--填入電話-->
-    <input type="url">  <!--傳網址-->
-    <input type="button">  <!--普通按鍵-->
 </form>
-<!--參考網站: https://www.w3schools.com/tags/tag_input.asp-->
+
 ```
+
+| <input type="range" min="0" max="50"> | 拉條可以設最大最小值，也可以用id配label的for                 |
+| :-----------------------------------: | ------------------------------------------------------------ |
+|         <input type="search">         | 尋找通常會用id配label的for(說明)，再加name讓submit可以傳回到後端 |
+|         <input type="color">          | 選顏色                                                       |
+|          <input type="date">          | 選日期                                                       |
+|     <input type="datetime-local">     | 可以選日期和時間                                             |
+|         <input type="month">          | 選年和月                                                     |
+|          <input type="week">          | 選年和周                                                     |
+|          <input type="file">          | 放入文件檔案                                                 |
+|         <input type="hidden">         | 隱藏的，沒東西                                               |
+|         <input type="image">          | 放圖片                                                       |
+|         <input type="number">         | 輸入數字                                                     |
+|         <input type="email">          | 輸入信箱                                                     |
+|        <input type="password">        | 輸入密碼                                                     |
+|        <input type="checkbox">        | 多選框通常會設定id，搭配label的for指定選項                   |
+|         <input type="radio">          | 單選框通常會設定id，搭配label的for指定選項                   |
+|         <input type="reset">          | 所有form裡面的input重設                                      |
+|          <input type="tel">           | 填入電話                                                     |
+|          <input type="url">           | 傳網址                                                       |
+|         <input type="button">         | 普通按鍵                                                     |
+|                                       |                                                              |
+
+## From Attributes
+
+| Attribute      | Value                                                        | Description                                                  |
+| :------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
+| accept-charset | *character_set*                                              | 指定表單提交的字符編碼                                       |
+| action         | *URL*                                                        | 指定表單提交的數據要發到哪裡                                 |
+| autocomplete   | on、 off                                                     | 指定表單是否應打開或關閉自動完成功能                         |
+| enctype        | application/x-www-form-urlencoded、 multipart/form-data、 text/plain | 指定提交到服務器時應如何編碼表單數據（僅適用於 method="post"） |
+| method         | get、 pos                                                    | 指定發送表單數據時使用的 HTTP 方法，get會讓資料在連結顯示，post在內容顯示，比較安全 |
+| name           | *text*                                                       | 指定表單的名稱                                               |
+| novalidate     | novalidate                                                   | 指定提交時不應驗證表單                                       |
+| rel            | external、 help、 license、 next、 nofollow、 noopener、 noreferrer opener、 prev、 search | 指定鏈接資源和當前文檔之間的關係                             |
+| target         | _blank、 _self、 _parent、 _top                              | 指定在何處顯示提交表單後收到的response                       |
+
+
+
+> 參考網站: https://www.w3schools.com/tags/tag_input.asp
 
 ## 小型資料庫(sqlite; 資料量<10**5)
 
@@ -133,10 +150,17 @@ root@localhost:~/pub6# cat pm2run.sh
 
 ```
 Q:
-	在函式裡面prompt()和alert()為甚麼是顯示在終端機?
+	在函式裡面prompt()和alert()為甚麼是顯示在終端機? 使用onclick去觸發
 	class不能在router裡面運作?
-	input的 search 和 file 可以讀取資料嗎
-	search搜尋引擎 --> database ? 
+		obj.func, 不能直接被 oak router 呼叫。
+		必須包成 (ctx)=>obj.func(ctx)
+		
+	如何把form input 裡面的回傳的file 存到伺服器上面? (好像只能存檔名
+	--> Upload
+	search搜尋引擎? 12-elasticsearch
+	
+	如何不讓if有優先順序?
+	switch(this.keyboard): case left.down 不行跑，要如何實現功能?
 	
 ```
 

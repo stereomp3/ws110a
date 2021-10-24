@@ -1,4 +1,4 @@
-> 自學網頁遊戲開發，參考網頁:  [Phaser 幫我撐個 30 天](https://ithelp.ithome.com.tw/users/20111617/ironman/1794)、[Note of Phaser3](https://rexrainbow.github.io/phaser3-rex-notes/docs/site/)
+> 自學網頁遊戲開發，參考網頁:  [Phaser  幫我撐個 30 天](https://ithelp.ithome.com.tw/users/20111617/ironman/1794)、[Note of Phaser3](https://rexrainbow.github.io/phaser3-rex-notes/docs/site/)
 
 # Phaser遊戲製作
 
@@ -18,7 +18,7 @@
 
 
 
-> [使用者互動](#使用者互動)
+>[額外遊戲功能](#額外遊戲功能)
 
 
 
@@ -34,6 +34,11 @@ let config = {
     width: 640,
     height: 320,
     scene			// 等同於 scene: scene
+    /*scene: {           // 讓scene裡面的func對應到自己創的func
+        preload: preload,
+        create: create,
+        update: update
+    }*/
 }
 
 // 創建遊戲
@@ -139,46 +144,20 @@ scene.update = function() {
 
 
 
-### 使用者互動
 
->keyboard event、click event
 
-```JS
-// click event
-scene.update = function() {
-    //前面內容....
-    // 當使用者點擊在畫面上（手機也適用）
-    if (this.input.activePointer.isDown) {		
-        this.player.x += this.playerSpeed
-    }
-}
+## 額外遊戲功能
 
-// Keyboard events
-scene.create = function(){
-    //....
-    this.keyboard = this.input.keyboard.createCursorKeys() // 取得鍵盤輸入
-}
-scene.update = function() {
-    //....
-    // 使用上面create的 this.keyboard
-    // 上(up)、下(down)、左(left)、右(right)、空白(space)、shift(shift)
-    if (this.keyboard.right.isDown) {
-            this.player.x += this.playerSpeed
-    }
-    if (this.keyboard.left.isDown) {
-            this.player.x -= this.playerSpeed
-    }
+```js
+scene.update = function () {
     
-    // 使用字母鍵
-    // Get key object
-    var keyD = scene.input.keyboard.addKey('D')
-    var keyA = scene.input.keyboard.addKey('A')
-    if(keyD.isDown){
-        this.player.x += this.playerSpeed
-    }
-    if(keyA.isDown){
-        this.player.x -= this.playerSpeed
-    }
+    // 下面的key和data可以不填。
+    if (判斷條件) {this.scene.pause(key)}  // 暫停
+    if (判斷條件) {this.scene.start(key, data)}   // 開始
+    if (判斷條件) {this.scene.restart(data)}  // 重新遊戲
+
 }
 ```
+
+
 

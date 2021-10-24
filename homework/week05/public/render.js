@@ -54,7 +54,7 @@ export function list(posts) {
         <li>
         <h1 style = "color : rgb(48, 51, 45)">${ post.title } </h1>
         <h3>${ post.date }</h3>
-        <p><a href="/post/${post.id}">查看內容</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/delete/${post.id}">刪除貼文</a></p>
+        <p><a href="/post/${post.id}">查看內容</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/delete/${post.id}" onclick="delete_button();">刪除貼文</a></p>
         </li>
         `)
     }

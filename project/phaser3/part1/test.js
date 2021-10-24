@@ -14,6 +14,11 @@ router
     root: Deno.cwd() + "/assets", 
     })
   })
+  .get("/data/picture/(.*)", async (ctx) => { 
+   await send(ctx, ctx.params[0],{
+    root: Deno.cwd() + "/data/picture", 
+    })
+  })
 
 const app = new Application();
 app.use(router.routes()); 

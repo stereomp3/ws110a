@@ -45,10 +45,8 @@ async function list(ctx) {
     ctx.response.body = await render.list(calendar);
 }          
 function delete_list(ctx){
-    let password = prompt("Please enter password to delete");
     const id = ctx.params.id;
-    if(password === 'certify1') db.query(`DELETE FROM Calendar WHERE id=${id}`)
-    else alert("password error")
+    db.query(`DELETE FROM Calendar WHERE id=${id}`)
     ctx.response.redirect('/');
 }
 async function add(ctx) {

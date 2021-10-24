@@ -4,6 +4,7 @@ var show_month = document.getElementById("show_month")
 var show_year = document.getElementById("show_year")
 let calendar_year = 2021
 let count = 10
+var password
 function inc(){
     if(count < 11) show_month.innerHTML = Object.keys(calendar_month)[count += 1]
     else {
@@ -27,4 +28,11 @@ function Calendar_day(){
         show_schedule[1] = show_month.innerHTML">${day}</a></li>`)
     }
     document.getElementById('days').innerHTML = calendar_list.join(" ")
+}
+function delete_button(){
+    while(true){
+        password = prompt('Please enter password to delete')
+        if(password === 'certify1') return
+        else alert("password error")
+    }
 }
