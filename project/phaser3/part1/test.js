@@ -24,5 +24,5 @@ const app = new Application();
 app.use(router.routes()); 
 app.use(router.allowedMethods()); 
 
-console.log('start at : http://127.0.0.1:8000')
-await app.listen({ port: 8000 }); 
+console.log('start at : http://127.0.0.1:7000')
+await app.listen({ port: 7000 }); 

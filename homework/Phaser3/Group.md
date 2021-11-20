@@ -1,4 +1,4 @@
-> 自學網頁遊戲開發，參考網頁:  [Phaser  幫我撐個 30 天](https://ithelp.ithome.com.tw/users/20111617/ironman/1794)、[Note of Phaser3](https://rexrainbow.github.io/phaser3-rex-notes/docs/site/)、[JSON](https://developer.mozilla.org/zh-TW/docs/Learn/JavaScript/Objects/JSON)
+> 自學網頁遊戲開發，參考網頁:  [Phaser  幫我撐個 30 天](https://ithelp.ithome.com.tw/users/20111617/ironman/1794)、[Note of Phaser3](https://rexrainbow.github.io/phaser3-rex-notes/docs/site/)、[JSON](https://developer.mozilla.org/zh-TW/docs/Learn/JavaScript/Objects/JSON)、[關於你關於我關於phaser 系列](https://ithelp.ithome.com.tw/articles/10206906)
 
 # 群組
 
@@ -10,6 +10,14 @@
 
 
 
+> [創建tilemap](#創建tilemap)
+
+
+
+> [生成刪除物件](#生成刪除物件)
+
+
+
 ## Group
 
 > 如果同一個物件要用到很多次可以使用Group重複呼叫
@@ -18,7 +26,7 @@
 
 ```js
 scene.create = function() {
-// 新建群組
+## 新建群組
     this.houses = this.add.group({
         key: 'house',
         repeat: 5,				// 多創建 5 個
@@ -30,12 +38,12 @@ scene.create = function() {
         }
     })
 
-// 這邊使用 getChildren() 方法，來找群組底下的物件，並 scale 它們
+## 這邊使用 getChildren() 方法，來找群組底下的物件，並 scale 它們
     this.houses.getChildren().forEach(item => {
         item.setScale(0.8)
     })  
     
-// 也可以創建一個容器裝靜態物件(像地形)，或是怪物群裝怪物....
+## 也可以創建一個容器裝靜態物件(像地形)，或是怪物群裝怪物....
     this.platforms = this.add.group()
     
     // 製作地面
@@ -94,8 +102,9 @@ scene.create = function() {
 
 scene.preload = function() {
     //...
+    this.load.image('ground', 'assets/ground.png')
     // 載入json檔
-    this.load.json('map', 'assets/map.json')
+    this.load.json('map', 'data/map.json')
 }
 
 scene.setData = function() {
@@ -114,5 +123,53 @@ scene.setData = function() {
 
 
 
+## 創建tilemap
 
+> [tilemap](https://rexrainbow.github.io/phaser3-rex-notes/docs/site/tilemap/?h=map)使用的時候要和檔名一樣才讀取的到
+
+```js
+preload() {
+    // tile map editor 製作的 json 檔案
+    this.load.tilemapTiledJSON('map', 'data/map.json')
+    // 載入tilemap
+    this.load.spritesheet('RPGpack_sheet', 'assets/RPGpack_sheet.png', {
+        frameWidth: 64,
+        frameHeight: 64
+    })
+}
+create() {
+    //....
+    this.map = this.make.tilemap({ key: 'map' })
+    // 加入製作地圖使用的tilemap
+    this.tiles = this.map.addTilesetImage('RPGpack_sheet')
+    // 使用 Tiled Map Editor 做的 background 圖層
+    this.backgroundLayer = this.map.createStaticLayer('background', this.tiles, 0, 0)
+
+    // 使用 Tiled Map Editor 做的 block 圖層
+    this.blockedLayer = this.map.createStaticLayer('block', this.tiles, 0, 0)
+    // 讓背景可以站在上面
+    this.blockedLayer.setCollisionByExclusion([-1])
+}
+```
+
+
+
+## 生成刪除物件
+
+>用在子彈飛行，或是敵人死亡之類的
+
+```JS
+// 創建子彈
+const bullet = this.add.sprite(x, y , key, frame);
+
+// 子彈毀滅
+bullet.destory()
+
+// 可以為子彈建立一個群組，統一設定
+this.bullets = this.add.group();
+this.bullets.add(bullet);
+this.physics.add.existing(bullet);
+
+
+```
 

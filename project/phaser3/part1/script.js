@@ -1,4 +1,3 @@
-
 // 創建場景
 let scene = new Phaser.Scene('Game')
 
@@ -21,7 +20,6 @@ let config = {
 let game = new Phaser.Game(config)
 life_span()
 
-
 function life_span(){
     // 生命週期_初始
     scene.init = function() { // constructor
@@ -34,22 +32,14 @@ function life_span(){
     scene.preload = function() {
         this.load.image('bg', 'assets/bg.png')  		//「bg」當作一個標籤
         this.load.image('player02', 'assets/player02.png')  //「player02」當作一個標籤
+        this.load.image('ground', 'assets/ground_n.png')
         
         this.load.spritesheet('player', 'assets/Nezuko.png',{
             frameWidth: 64,				// 每幀圖片的寬 240 / 3
             frameHeight: 48			// 高度
         })
 
-        this.load.tilemapTiledJSON('map01', 'assets/map01.json')
-        this.load.spritesheet('tilemap01', 'data/picture/tilemap01.png',{
-            frameWidth: 32,				// 每幀圖片的寬 240 / 3
-            frameHeight: 32			// 高度
-        })
-        this.load.spritesheet('tilemap02', 'data/picture/tilemap02.png',{
-            frameWidth: 64,				// 每幀圖片的寬 240 / 3
-            frameHeight: 64			// 高度
-        })
-        this.load.image('ground', 'assets/ground_n.png')
+        this.load.json('map', 'data/map.json')
 
         // 創建 text
         let percentText = this.add.text(320, 160, '', {
@@ -94,23 +84,13 @@ function life_span(){
 
     scene.create = function(){
         this.keyboard = this.input.keyboard.createCursorKeys() // 取得鍵盤輸入
-        this.physics.world.setBounds(0, 0, 1600, 1600); // setBounds(x, y, width, height)
+        this.physics.world.setBounds(0, 0, 1600, 1600); // setBounds(x, y, width, height
 
-        this.map = this.make.tilemap({ key: 'map01' })
-        this.tile01 = this.map.addTilesetImage('tilemap01')
-        this.tile02 = this.map.addTilesetImage('tilemap02')
-
-        this.backgroundLayer = this.map.createStaticLayer('Background', this.tile01, 0, 0)
-        this.backgroundLayer = this.map.createStaticLayer('Background', this.tile02, 0, 0)
-        //使用 Tiled Map Editor 做的 Blocked 圖層
-        this.blockedLayer = this.map.createStaticLayer('Blocked', this.tile01, 0, 0)
-        this.blockedLayer = this.map.createStaticLayer('Blocked', this.tile02, 0, 0)
-
-
+        this.ground = this.add.sprite(100, 100, 'ground')
         this.bg = this.add.sprite(0, 0, 'bg')
         this.bg.setOrigin(0,0)	
-        this.bg.displayWidth = 3200
-        this.bg.displayHeight = 3200
+        this.bg.displayWidth = 1600
+        this.bg.displayHeight = 1600
 
         this.player02 = this.add.sprite(600, 223, 'player02')
 
@@ -121,7 +101,7 @@ function life_span(){
         
         // 設定物理性質的作用範圍 setSize(width, height, center) // center != 0 在中間(default)， else 從最左邊
         this.player.body.setSize(10, 46)
-
+        this.setData()
         // 讓兩個物件產生碰撞
         this.physics.add.collider(this.platforms, this.player)
 
@@ -186,7 +166,19 @@ function life_span(){
         if (pre_x == x){
             this.player.anims.play('turn')
         }
-        
+    }
+
+    scene.setData = function() {
+        this.gameData = this.cache.json.get('map') // 取得JSON檔
+        this.platforms = this.add.group()
+        // 取得每個素材，把他們放入platforms裡面
+        this.gameData.platforms.forEach(item => {
+            let w = this.textures.get(item.key).get(0).width // 取得素材的寬
+            let h = this.textures.get(item.key).get(0).height  // 取得素材的高
+            let obj = this.add.tileSprite(item.x, item.y, item.num * w, h, item.key)
+            this.physics.add.existing(obj, true)
+            this.platforms.add(obj)
+        })
     }
 
     scene.gameOver = function() {

@@ -80,10 +80,13 @@ body.onWall();  // body.blocked.left || body.blocked.right 碰到左邊或右邊
 
 body.reset(x, y);  //  物件移動到(x, y)
 body.stop();  // 速度，加速度，重力...歸零
+body.velocity.y = var
 
 body.setMass(m);  // 設置質量
 body.setVelocityY(-500)  // 設置速度
 body.setAcceleration(x, y);  // 設置加速度
+
+body.setBounce(x, y);   // 讓物體有彈性
 
 // 調整物件碰撞邊框
 body.setSize(width, height, center);   // 矩形
@@ -103,5 +106,7 @@ var right = body.world.bounds.right;
 
 // 刪除物理性質
 scence.physics.world.disable(gameObj)
+
+
 ```
 

@@ -10,7 +10,17 @@
 
 
 
+> [Event](#Event)
+
+
+
 >[Sprite sheet](#Sprite sheet)
+
+
+
+>[timer](#timer)
+
+
 
 
 
@@ -64,10 +74,10 @@ scene.update = function () {
 
 ## 觸控式互動
 
-> [click event](https://rexrainbow.github.io/phaser3-rex-notes/docs/site/ui-basesizer/?h=click#click)、[拖移物件](https://rexrainbow.github.io/phaser3-rex-notes/docs/site/board-miniboard/)、[Tween](https://ithelp.ithome.com.tw/articles/10205949)(配合使用者點擊或滑鼠hover做效果)
+> [click event](https://rexrainbow.github.io/phaser3-rex-notes/docs/site/ui-basesizer/?h=click#click)、[touch events](https://rexrainbow.github.io/phaser3-rex-notes/docs/site/touchevents/)、[拖移物件](https://rexrainbow.github.io/phaser3-rex-notes/docs/site/board-miniboard/)、[Tween](https://ithelp.ithome.com.tw/articles/10205949)(配合使用者點擊或滑鼠hover做效果)
 
 ```js
-// click event
+## click event
 scene.update = function() {
     //前面內容....
     // 當使用者點擊在畫面上（手機也適用）
@@ -76,7 +86,22 @@ scene.update = function() {
     }
 }
 
-// 拖移物件
+## touch events
+// 沒辦法用在add.graphics()後面，只能用在text，sprite，button
+
+// 新增點擊事件 'pointerdown' 和 'pointerup' 負責偵測滑鼠有沒有點物件
+// 'pointerout' --> 滑鼠出去， 'pointerover' --> 滑鼠進去
+gameObject.setInteractive().on('pointerdown', ()=>{
+    // ...
+});
+
+// 暫時移除互動
+gameObject.disableInteractive();
+
+// 移除互動
+gameObject.removeInteractive();
+
+## 拖移物件
 scene.create = function() {
     //.....
     // 用setInteractive()把物件設為可互動
@@ -84,14 +109,14 @@ scene.create = function() {
 
     this.input.setDraggable(this.man)
 
-    // 偵聽 drag
+    // 偵聽 drag                    // 滑鼠位置   遊戲物件  
         this.input.on('drag', function(pointer, gameObj, dragX, dragY) {
         gameObj.x = dragX
         gameObj.y = dragY
     })
 }
 
-// Tween
+## Tween
 scene.create = function() {
     //...
     // 把物件的 origin 設在中間正下方，並設為可互動
@@ -178,7 +203,65 @@ scene.update = function() {
 
 
 
-### 
+## timer
+
+> phaser3有內建的[timer](https://rexrainbow.github.io/phaser3-rex-notes/docs/site/timer/?h=time)，不過我比較習慣用之前的 new Date().getTime()
+
+```js
+new Date().getTime() // 取得時間(從1970 ms)
+new Date().getSeconds()  // 取得時間
+// 設兩個變數，用時間差取需要間隔的時間                                                                                                                                                                 
+
+// 重設timer所有屬性
+timer.reset({
+    delay: 500,                // ms，這個相當於setTimeout
+    callback: callback,
+    args: [],
+    callbackScope: thisArg,
+    loop: false,               // 迴圈
+    repeat: 0,                 // 重複一定次數
+    startAt: 0,                // 重複一定次數
+    timeScale: 1,			   // 對delay做調整，timeScale越大delay越小
+    paused: false              // 設置是否暫停
+})
+
+// Looped timer
+var timer = scene.time.addEvent({
+    delay: 500,                // ms
+    callback: callback,       // 重置的時候要用的判定
+    //args: [],
+    callbackScope: thisArg,  //this
+    loop: true
+});
+
+// Repeat timer
+var timer = scene.time.addEvent({
+    delay: 500,                // ms
+    callback: callback,
+    //args: [],
+    callbackScope: thisArg,
+    repeat: 4
+    
+// timer暫停
+timer.paused = true;
+    
+// timer開始 
+timer.paused = false;
+    
+    
+// 移除timer
+timer.remove();
+
+// 0一直加到接近1，速度看delay 
+var progress = timer.getProgress();
+
+// 取得timer執行次數
+var count = timer.getRepeatCount();
+```
+
+
+
+
 
 
 

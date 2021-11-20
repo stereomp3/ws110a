@@ -117,7 +117,7 @@ scene.gameOver = function() {
 > [text](https://rexrainbow.github.io/phaser3-rex-notes/docs/site/text/)、[loader](https://rexrainbow.github.io/phaser3-rex-notes/docs/site/loader/)、[Graphics](https://rexrainbow.github.io/phaser3-rex-notes/docs/site/graphics/?h=graphics)
 
 ```js
-// text
+## text
 scene.create = function () { 
     // ...
     // 加入文字                x    y   文字內容
@@ -136,7 +136,7 @@ scene.update = function () {
     } 
 }
 
-// loader
+## loader
 scene.preload = function() {
     //... 
     // 創建 text
@@ -185,7 +185,7 @@ scene.preload = function() {
 
 > camera 跟隨著 player 的位置
 
-```
+```js
 scene.create = function() {
     // 設定物理邊界
 	this.physics.world.setBounds(0, 0, 1000, 1000); // setBounds(x, y, width, height)
@@ -232,6 +232,18 @@ scene.create = function() {
     });
 }
 ```
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
