@@ -1,0 +1,115 @@
+body {
+    padding: 80px;
+    font: 16px Helvetica, Arial;
+    margin: 0;
+}
+.topNav{
+    text-align: center;
+    height: 3%;
+    width: 100%;
+    position: fixed;
+    z-index: 98;
+    top: 0;
+    left: 0;
+    background-color: rgba(121, 121, 121, 0.05);
+    overflow-x: hidden; /* 超出範圍就隱藏*/
+    padding-top: 20px;
+}
+.downNav{
+    text-align: center;
+    height: 3%;
+    width: 100%;
+    z-index: 98;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(121, 121, 121, 0.05);
+    overflow-x: hidden; /* 超出範圍就隱藏*/
+    padding-top: 20px;
+}
+.sideNav{
+    transition: 1s;
+    height: 100%;
+    width: 20%;
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden; /* 超出範圍就隱藏*/
+}
+.sideNav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    margin-top: 15%;
+    color: #818181;
+    display: block;
+}
+.sideNav i {
+    padding: 6px 8px 6px 16px;
+    cursor: pointer;
+    font-size: 30px;
+
+    color: #818181;
+    display: block;
+}
+
+.main{
+    text-align: center;
+}
+
+
+
+.typing{
+    font-size: 20px;
+}
+
+
+
+
+
+/* class post */
+h1 {
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 1.2em;
+}
+
+#posts {
+    margin: 0;
+    padding: 0;
+}
+
+#posts li {
+    margin: 40px 0;
+    padding: 0;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    list-style: none;
+}
+
+#posts li:last-child {
+    border-bottom: none;
+}
+
+textarea {
+    width: 500px;
+    height: 300px;
+}
+
+input[type=text],
+textarea {
+    border: 1px solid #eee;
+    border-top-color: #ddd;
+    border-left-color: #ddd;
+    border-radius: 2px;
+    padding: 15px;
+    font-size: .8em;
+}
+
+input[type=text] {
+    width: 500px;
+}

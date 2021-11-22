@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="main.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+      <div class="topNav">
+        <i class="fa fa-sort-asc" aria-hidden="true" onclick="document.body.scrollTop = 0"></i>
+      </div>
+      <i class="fa fa-bars" aria-hidden="true" onclick="sideNav.on()" style="left: 10px; top: 10px; position: fixed; font-size: 30px; z-index: 99; cursor: pointer;"></i>
+      <div class="sideNav">
+        <i class="fa fa-times" aria-hidden="true" onclick="sideNav.off()"></i>
+        <a href="#">About</a>
+        <a href="#game">Game</a>
+        <a href="#">Note</a>
+        <a href="#">Contact</a>
+      </div>
+      
+      <div class="main">
+        <h1>貼文版</h1>
+      </div>
+
+    <section class="main" id="content">
+    </section>
+
+    <div class="downNav">
+        <i class="fa fa-sort-desc" aria-hidden="true" onclick="document.body.scrollTop = window.outerHeight"></i>
+    </div>
+
+    <div style="text-align: center;"><span class="typing" > </span></div>
+    
+    <script src="main.js"></script>
+    <script src="OptionController.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
+    <script src="typing.js"></script>
+  </body>
+</html>
