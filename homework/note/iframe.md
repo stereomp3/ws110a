@@ -24,3 +24,18 @@
 * 全螢幕 
 
   `allowfullscreen="true"`、`webkitallowfullscreen="true"`、`mozallowfullscreen="true"`
+
+
+
+> 把網頁直接丟到iframe裡面
+
+```CSS
+iframe{
+    position: fixed;
+    left: 10%;
+    top: 0;
+    width: 90%;
+    height: 100%;
+}
+```
+

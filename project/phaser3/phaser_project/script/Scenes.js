@@ -3,8 +3,8 @@ function StartGame(){
         this.load.image('bg', 'assets/bg.png')
         this.load.image('title', 'assets/title.png')
         this.load.spritesheet('label', 'assets/label.png',{
-            frameWidth: 160,	// 每幀圖片的寬
-            frameHeight: 45		// 高度
+            frameWidth: 171,	// 每幀圖片的寬
+            frameHeight: 48		// 高度
         })
         this.load.audio('drun01', 'audio/drun01.wav'); 
         this.load.audio('touch01', 'audio/touch01.wav');

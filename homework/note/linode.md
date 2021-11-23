@@ -44,3 +44,12 @@ favicon.ico  pm2run.sh   run1.sh    _sidebar.md  web
 ```
 
 * deno run -A --unstable app/app.js 80
+
+
+
+## port useage
+
+```
+8000 放行事曆
+```
+
