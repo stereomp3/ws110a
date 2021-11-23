@@ -38,7 +38,7 @@ favicon.ico  pm2run.sh   run1.sh    _sidebar.md  web
 
 把run1.sh變得可以直接使用: chmod +x run1.sh /*顏色會變綠*/
 查看pm2run.sh的內容: cat pm2run.sh
-開啟: pm2 start ./run.sh -f --cron="*/30 * * * *" /*deno有時會小當機，每30分鐘重啟一次*/
+開啟: pm2 start ./run.sh -f --cron= */30 * * * *" /*deno有時會小當機，每30分鐘重啟一次*/
 關掉使用: pm2 stop ./run.sh
 刪掉: pm2 delete 名字
 ```
@@ -47,9 +47,29 @@ favicon.ico  pm2run.sh   run1.sh    _sidebar.md  web
 
 
 
+> 把github上的東西拉回來
+
+```
+git pull git@github.com:stereomp3/ws110a.git
+如果報錯 --> Your local changes to the following files would be overwritten by merge
+就用
+git checkout 有錯的資料夾
+然後再pull一次
+```
+
+> 刪除文件
+
+```
+rm 資料夾
+```
+
+
+
 ## port useage
 
 ```
 8000 放行事曆
+8666 放主網頁
+6020 放phaser Game
 ```
 

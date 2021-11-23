@@ -30,9 +30,9 @@
 > 把網頁直接丟到iframe裡面
 
 ```CSS
-iframe{
+siframe{
     position: fixed;
-    left: 10%;
+    left: 10%;s
     top: 0;
     width: 90%;
     height: 100%;

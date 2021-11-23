@@ -40,7 +40,7 @@ R.main_layout = function (title, content) {
 }
 R.about = function () {
   R.layout("","")
-  return R.main_layout("about",`<iframe src="https://stereomp3.github.io/wp109b/homework/MyWeb8.0/MyWeb.html" style= "z-index: 9999;" frameborder="0" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>`)
+  return R.main_layout("about",`<iframe src="https://stereomp3.github.io/wp109b/homework/MyWeb8.0/MyWeb.html" frameborder="0" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>`)
 }
 R.game = function (){
   R.layout("","")
