@@ -64,3 +64,6 @@ git push -u origin main
 git config --global core.autocrlf true
 ```
 
+
+
+> 如果出現檔案有改過就 git checkout 那個資料夾

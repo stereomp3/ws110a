@@ -22,6 +22,9 @@ window.onhashchange = async function () {
     case '#new':
       R.new()
       break
+    case '#note':
+      R.note()
+      break
     case '#about':
       R.about()
       break
@@ -47,6 +50,10 @@ R.main_layout = function (title, content) {
   document.querySelector('title').innerText = title
   document.querySelector('main').innerHTML = content
   document.getElementById("tyInfo").style.display = "none"
+}
+R.note = function(){
+  R.layout("","")
+  return R.main_layout("note",`<iframe src="https://stereomp3.github.io/note/" frameborder="0" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>`)
 }
 R.about = function () {
   R.layout("","")
