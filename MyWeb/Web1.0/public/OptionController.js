@@ -9,3 +9,14 @@ sideNav.on = function () {
 }
 
 
+sideNav.login = function(){
+    document.getElementById("loginIcon").style.display = "none"
+    document.getElementById("signoutIcon").style.display = ""
+}
+
+sideNav.logout = function(){
+    document.getElementById("loginIcon").style.display = ""
+    document.getElementById("signoutIcon").style.display = "none"
+}
+
+

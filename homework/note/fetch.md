@@ -7,6 +7,8 @@
 > 而2.0是把東西都放在前端，不過前端使用fetch去和後端進行資料交互
 >
 > ajax 和 fetch --> [ajax & fetch & axios](https://ithelp.ithome.com.tw/articles/10244631)
+>
+> **注意!!，使用fetch要利用onclick觸發函式，所以form的最後不是用 `type = "submit`, 而是`type="button"`**
 
 ```JS
 var R = {}
@@ -104,3 +106,16 @@ R.savePost = async function () {
 }
 ```
 
+
+
+> 後端接收的程式碼需要加上ctx.response.body = "???"，讓網頁有內容，才不會報錯(網頁不會顯示)
+
+
+
+
+
+
+
+
+
+> 前端console.log在網頁看，後端console.log在terminal裡面看

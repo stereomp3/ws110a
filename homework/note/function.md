@@ -68,7 +68,25 @@ document.body.scrollTop = 0
 
 
 
+> 網頁不換行
 
+```
+<nobr>内容</nobr>     // HTML
+white-space:nowrap;  // CSS
+
+float: left  // CSS
+```
+
+
+
+> 回到上一頁
+
+```JS
+history.go(-1)　// 返回上一頁　
+history.go(-2)　// 返回上兩頁　
+history.back()　// 返回上一頁
+window.history.forward()　//前往下一頁
+```
 
 
 

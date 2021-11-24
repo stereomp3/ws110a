@@ -2,6 +2,7 @@ body {
     padding: 80px;
     font: 16px Helvetica, Arial;
     margin: 0;
+    background-color: #EEEEEE;
 }
 
 iframe{
@@ -58,18 +59,59 @@ a{
     color: #a1a1a1;
     display: block;
 }
-.sideNav i {
+.sideNav i::after {
     padding: 6px 8px 6px 16px;
     cursor: pointer;
     font-size: 30px;
-
     color: #818181;
     display: block;
+    white-space:nowrap;
+    float: left;
 }
+
 
 .main{
     text-align: center;
 }
+.PostDiv{
+    margin-left: 20%;
+    background-color: #393E46;
+    color: #EEEEEE;
+    border: rgb(0, 0, 0) solid 5px;
+    border-radius: 5px;
+    height: 20vh;
+    width: 50vw;
+}
+.midcanvas {
+    background-color: lightgray;
+    z-index: 88;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.minicanvas {
+    background-color: #393E46;
+    border: rgb(0, 0, 0) solid 5px;
+    border-radius: 20px;
+    z-index: 98;
+    position: fixed;
+    top: 25%;
+    left: 25%;
+    height: 50%;
+    width: 50%;
+}
+.MyInfo{
+    transition: 1s;
+    position: relative;
+    padding: 6px 8px 6px 16px;
+    font-size: 40px;
+    text-decoration: none; 
+    color: #00ADB5;
+}
+
 
 .under_line_text{ 
     border-bottom: 1px solid #eee; 
@@ -127,6 +169,11 @@ input[type=text],textarea {
 
 input[type=text] {
     width: 500px;
+}
+input[type=password] {
+    width: 500px;
+    padding: 15px;
+    border: 0;
 }
 input[type=button] {
     background-color: rgb(160, 160, 160);

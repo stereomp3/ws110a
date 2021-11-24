@@ -65,6 +65,10 @@ rm 資料夾
 
 
 
+> 退出linode `exit`
+
+
+
 ## port useage
 
 ```

@@ -21,7 +21,7 @@
   > 資料類型可以寫 -> INTEGER PRIMARY KEY AUTOINCREMENT 表示自動生成遞增的整數(id)
   > ```
 
-  > SELECT
+  > SELECT  可以把東西拿出來，使用裡面的值  EX: post.title , post.id, post.body....
   >
   > ```sqlite
   > SELECT 資料欄位1, 資料欄位2, ...
@@ -33,7 +33,7 @@
   >
   > ```sqlite
   > INSERT INTO 創建資料名 (資料欄位1, 資料欄位2,...)]  
-  > VALUES (可以填值, 也可以不填值, ?,...); /*不填值(?)的話後面要補變量(,var1,var2)*/
+  > VALUES (可以填值, 也可以不填值, ?,...); /*填值(?)的話後面要補變量(,var1,var2)*/
   > ```
 
   >DELETE

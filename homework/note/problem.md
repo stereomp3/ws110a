@@ -6,3 +6,10 @@ default:
       break
 ```
 
+
+
+> fetch裡面的show是如何被觸發的??    .get('/post/:id', show) 
+
+
+
+> fetch可以get到後端的資料嗎? ( 像是取得資料庫內容 ... )
