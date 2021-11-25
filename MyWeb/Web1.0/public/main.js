@@ -1,51 +1,5 @@
 var R = {}
 
-// public 底下的東西都是前端的
-// 相當於前端的router
-window.onhashchange = async function () {
-  var r
-  // #後面的東西(包含)     // window.location.ref: 全部的url
-  var tokens = window.location.hash.split('/')
-  console.log('tokens=', tokens)
-  switch (tokens[0]) {
-    case '#show':
-      r = await window.fetch('/post/' + tokens[1]) // 找到文字檔  
-      let post = await r.json()  // 把字串轉成json
-      R.show(post)
-      break
-    case '#login':
-      R.loginUi() 
-      break
-    case '#signup':
-      R.signupUi()
-      break
-    case '#new':
-      R.new()
-      break
-    case '#note':
-      R.note()
-      break
-    case '#about':
-      R.about()
-      break
-    case '#game':
-      R.game()
-      break
-    case '#contact':
-      R.contact()
-      break
-    default:
-      r = await window.fetch('/list')  // json檔 到/list裡面拿檔案
-      let posts = await r.json()
-      R.list(posts)
-      break
-  }
-}
-
-window.onload = function () {
-  // hash(#後面的)有任何改變就會觸發
-  window.onhashchange()
-}
 R.main_layout = function (title, content) {
   document.querySelector('title').innerText = title
   document.querySelector('main').innerHTML = content
@@ -82,14 +36,14 @@ R.layout = function (title, content) {
   document.getElementById("tyInfo").style.display = ""
 }
 
-R.list = function (posts) {
+R.list = function (posts, user) {
   let list = []
   for (let post of posts) {
     list.push(`
     <li>
     <div class = "PostDiv">
     <pre style = "font-size : 18px">
-貼文標題: ${post.title}          
+   貼文標題: ${post.title}      poster: ${post.username}    
 
 <a style = "color: #00ADB5" id="show${post.id}" href="#show/${post.id}">閱讀貼文</a>
     </pre>
@@ -100,7 +54,8 @@ R.list = function (posts) {
   }
   let content = `
   <h1 style="padding-bottom: 20px;">貼文版</h1>
-  <p><a id="createPost" href="#new" class = "under_line_text" style = "font-size: 20px;">建立屬於自己的貼文吧!!(  <i class="fa fa-long-arrow-right" aria-hidden="true"></i> Click to Create)</a></p>
+  <p>${(user=="")?'<a class = "under_line_text" style = "font-size: 20px;">要登入才可以發文呦</a>'
+  :'<a id="createPost" href="#new" class = "under_line_text" style = "font-size: 20px;">建立屬於自己的貼文吧!!(  <i class="fa fa-long-arrow-right" aria-hidden="true"></i> Click to Create)</a>'}</p>
   <p>一共有 <strong>${posts.length}</strong> 則貼文 </p>
   <ul id="posts">
     ${list.join('\n')}
@@ -109,6 +64,7 @@ R.list = function (posts) {
   return R.layout('Posts', content)
 }
 
+// 讀取網站資料
 R.show = function (post) {
   return R.layout("Read post", `
     <h1 style="padding-bottom: 20px;">貼文版</h1>
@@ -160,3 +116,20 @@ R.signupUi = function (){
   `)
 }
 
+R.loginSuccess = function (){
+  return R.layout('loginSuccess', `
+  <div class = "midcanvas">
+    <h1 style = "margin-top: 10%;">loginSuccess</h1>
+    <a href = "#list">回到貼文區</a>
+  </div>
+  `)
+}
+
+R.loginFail = function (){
+  return R.layout('loginFail', `
+  <div class = "midcanvas">
+    <h1 style = "margin-top: 10%;">loginFail</h1>
+    <p>還沒註冊嗎?<i class="fa fa-long-arrow-right" aria-hidden="true"></i><a href = "#signup">Signup</a></p>
+  </div>
+  `)
+}

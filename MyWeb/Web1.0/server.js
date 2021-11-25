@@ -13,10 +13,12 @@ const session = new Session();
 const router = new Router()
 
 router.get('/list', list)
+      .get('/user', session.initMiddleware(), getUser) // 把用戶名丟到 ctx.response.body，顯示在user
       .get('/post/:id', show) // id從0開始
       .post('/signup', session.initMiddleware(), signup)
       .post('/login', session.initMiddleware(), login)
-      .post('/post', create)
+      .get('/logout', session.initMiddleware(), logout)
+      .post('/post', session.initMiddleware(), create)
       .get("/(.*)", async (ctx) => { //get("/", func())根目錄顯示
       await send(ctx, ctx.params[0],{
           // 把資料夾(/public)的檔案傳到網站上(這裡是到網站的根目錄底下)
@@ -40,8 +42,13 @@ async function list (ctx) {
   // 把資料放到/list裡面
   ctx.response.body = postQuery("SELECT id, username, title, body FROM Posts")
 }
-
-// 把內容用成字串放到網路上(/post/id)
+async function getUser(ctx){
+  ctx.response.type = 'application/json'
+  if(await ctx.state.session.get('username') == null) ctx.response.body = null
+  else ctx.response.body = await ctx.state.session.get('username')
+  console.log(ctx.response.body)
+}
+// 把內容用成字串放到網路上(/post/id)，被前端的fetch呼叫
 async function show (ctx) {
   const id = ctx.params.id
   console.log("id:"+id)
@@ -50,7 +57,7 @@ async function show (ctx) {
   if (!post) ctx.throw(404, 'invalid post id')
   // 把檔案類型變成json檔(原本是字串)
   ctx.response.type = 'application/json'
-  ctx.response.body = post
+  ctx.response.body = post // 丟到那個網址
 }
 
 async function create (ctx) {
@@ -60,26 +67,39 @@ async function create (ctx) {
   if (body.type === "json") {
     // 這裡oak自動將字串轉成json  (json.parse(obj))
     let post = await body.value;
-    // 創建時把資料丟到資料庫
-    sqlcmd("INSERT INTO posts (title, body) VALUES (?, ?)", [post.title, post.body])
-    ctx.response.body = 'success' // 這句一定要有，不然網站沒有內容會報錯!!!!
-    console.log('create:save=>', post)
+    let user = await ctx.state.session.get('username')
+    if(user != null){
+      console.log('user=', user)
+      // 創建時把資料丟到資料庫
+      sqlcmd("INSERT INTO posts (username, title, body) VALUES (?, ?, ?)", [user, post.title, post.body])
+      ctx.response.body = 'success' 
+      console.log('create:save=>', post)
+    }else {
+      ctx.throw(404, 'not login yet!');
+      ctx.response.body = 'fail' 
+    }
   }
 }
 
+let emailCheckSum = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9])+$/;
 async function signup(ctx) {
   // 接收前端fetch的資料 /signup
   const body = ctx.request.body(); // content type automatically detected
   if (body.type === "json") {
     let user = await body.value;
     var dbUsers = userQuery(`SELECT id, username, password, email FROM users WHERE username='${user.username}'`)
-    if (dbUsers.length === 0) {
-      // 添加資料
-      sqlcmd("INSERT INTO users (username, password, email) VALUES (?, ?, ?)", [user.username, user.password, user.email])
-      console.log("USER:" + userQuery("SELECT id, username, password, email FROM users"))
-      ctx.response.body = 'success' // 這句一定要有，不然網站沒有內容會報錯!!!!
-      console.log('create:save=>', user)
-      console.log("$ signup success")
+    if (dbUsers.length === 0) { // 確定沒有這個使用者進入
+      if(user.username.length === 0) ctx.response.body = 'usernamefail'
+      else if(user.password.length < 6) ctx.response.body = 'passwordfail'
+      else if(emailCheckSum.exec(user.email) == null) ctx.response.body = 'emailfail'
+      else{
+        // 添加資料
+        sqlcmd("INSERT INTO users (username, password, email) VALUES (?, ?, ?)", [user.username, user.password, user.email])
+        console.log("USER:" + userQuery("SELECT id, username, password, email FROM users"))
+        ctx.response.body = 'success' // 這句一定要有，不然網站沒有內容會報錯!!!! // 這句可以讓前端做判斷!!
+        console.log('create:save=>', user)
+        console.log("$ signup success")
+      }
     }
     else {
       console.log("$ signup fail")
@@ -99,8 +119,8 @@ async function login(ctx) {
     var dbUsers = userQuery(`SELECT id, username, password, email FROM users WHERE username='${user.username}'`) // userMap[user.username]
     var dbUser = dbUsers[0]
 
-    // 沒有這個使用者直接跳開
-    if(!dbUser) return ctx.response.redirect('/')
+    // 沒有這個使用者跳到失敗頁面
+    if(!dbUser) return ctx.response.body = 'fail'
 
     if(dbUser.password === user.password){
       console.log("$ login success")
@@ -112,12 +132,15 @@ async function login(ctx) {
     else{
       console.log("$ login fail")
       ctx.response.body = 'fail' // 這句一定要有，不然網站沒有內容會報錯!!!!
+      // ctx.response.status = 404; 顯示錯誤
     }
-    
-    ctx.response.body = 'success' // 這句一定要有，不然網站沒有內容會報錯!!!!
   }
 }
 
+async function logout(ctx) {
+  ctx.state.session.set('username', null)
+  ctx.response.redirect('/')
+}
 // 防報錯出問題
 function sqlcmd(sql, arg1) {
   console.log('sql:', sql)
@@ -152,5 +175,5 @@ function userQuery(sql) {
 }
 
 
-console.log('Server run at http://127.0.0.1:1998')
-await app.listen({ port: 1998})
+console.log('Server run at http://127.0.0.1:1999')
+await app.listen({ port: 1999})

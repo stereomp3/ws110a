@@ -31,13 +31,14 @@ R.login = async function(){
         'Content-Type': 'application/json'
         }
     })
-    console.log("###"  + fetch('#login', {
-        method: 'GET',
-        headers: {
-        'Content-Type': 'application/json'
+    r.text().then(function(data) {
+        console.log("body text:" + data); // this will be a string
+        if(data=="success") {
+            window.location.hash = '#loginSuccess'
+            detecUser()
         }
-    }))
-    window.location.hash = '#list'
+        else window.location.hash = '#loginFail'
+    })
     return r
 }
 
@@ -55,6 +56,15 @@ R.signup = async function(){
         'Content-Type': 'application/json'
         }
     })
-    window.location.hash = '#list'
+    r.text().then(function(data) {
+        console.log("body text:" + data); // this will be a string
+        if(data=="success") {
+            window.location.hash = '#login'
+        }
+        else if(data=="usernamefail") alert("username cannot be null.")
+        else if(data=="passwordfail") alert("password is to short...\npassword must be at least 6 characters.")
+        else if(data=="emailfail") alert("email format error..")
+        else alert("username already exists!")
+    })
     return r
 }
