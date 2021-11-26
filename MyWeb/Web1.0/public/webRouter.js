@@ -1,8 +1,9 @@
 var ISUSER = false // 確認是否有登入
+var r
 // public 底下的東西都是前端的
 // 相當於前端的router
 window.onhashchange = async function () {
-    var r, getUser
+    var getUser
     // #後面的東西(包含)     // window.location.ref: 全部的url
     var tokens = window.location.hash.split('/')
     console.log('tokens=', tokens)
