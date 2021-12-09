@@ -58,7 +58,7 @@ git push -u origin main
 > 這個作筆記很好用
 
 ```
-git remote -v  // 連到遠端
+git remote -v  // 查看連到的遠端
 git checkout -b mynote  // 新增子分支
 git add -A   // 添加資料到分支(現在在mynote分支)
 git commit -m "mynote init"   // 把資料發布上去
