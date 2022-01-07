@@ -22,10 +22,17 @@ router.get('/list', list)
       .get("/(.*)", async (ctx) => { //get("/", func())根目錄顯示
       await send(ctx, ctx.params[0],{
           // 把資料夾(/public)的檔案傳到網站上(這裡是到網站的根目錄底下)
-          root: Deno.cwd() + "/public", 
-          index: "index.html"
+          root: Deno.cwd(), 
+          index: "public/index.html"
           })
       })
+      /*.get("/(.*)", async (ctx) => { //get("/", func())根目錄顯示
+      await send(ctx, ctx.params[0],{
+          // 把資料夾(/public)的檔案傳到網站上(這裡是到網站的根目錄底下)
+          root: Deno.cwd() + "/game", 
+          index: "index.html"
+          })
+      })*/
 
 app.use(router.routes())
 app.use(router.allowedMethods())

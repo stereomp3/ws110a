@@ -82,3 +82,17 @@ git config --global core.autocrlf true
 
 
 > 如果出現檔案有改過就 git checkout 那個資料夾
+
+
+
+> 跟別人合作不要git add -A，改了哪個檔案就加那個檔案就好
+
+
+
+> deno 上傳套件要新增github 的 repository，還要加tag
+
+```
+git tag v0.1
+git push origin v0.1
+```
+
